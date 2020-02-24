@@ -56,15 +56,15 @@ const language = (navigator.languages && navigator.languages[0]) || navigator.la
 const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 /**
- * Create React Component for <%= widgetId %>
- * @class <%= className %>
+ * Create React Component for APIMApiTraffic
+ * @class APIMApiTrafficwidget
  * @extends {Widget}
  */
-class <%= className %> extends Widget {
+class APIMApiTrafficwidget extends Widget {
     /**
-     * Creates an instance of <%= className %>.
+     * Creates an instance of APIMApiTrafficwidget.
      * @param {any} props @inheritDoc
-     * @memberof <%= className %>
+     * @memberof APIMApiTrafficwidget
      */
     constructor(props) {
         super(props);
@@ -72,6 +72,7 @@ class <%= className %> extends Widget {
             width: this.props.width,
             height: this.props.height,
             queryData: null,
+            publisherData: null,
             localeMessages: null,
         };
 
@@ -87,6 +88,7 @@ class <%= className %> extends Widget {
             }));
         }
         
+        this.handlePublisherParameters = this.handlePublisherParameters.bind(this);  
         this.assembleQuery = this.assembleQuery.bind(this);    
         this.handleQueryResults = this.handleQueryResults.bind(this);
     }
@@ -106,7 +108,7 @@ class <%= className %> extends Widget {
             .then((message) => {
                 this.setState({
                     providerConfig: message.data.configs.providerConfig,
-                }, () => super.subscribe(this.assembleQuery));
+                }, () => super.subscribe(this.handlePublisherParameters));
             })
             .catch((error) => {
                 console.error("Error occurred when loading widget '" + widgetID + "'. " + error);
@@ -124,13 +126,13 @@ class <%= className %> extends Widget {
     /**
       * Load locale file
       * @param {string} locale Locale name
-      * @memberof <%= className %>
+      * @memberof APIMApiTrafficwidget
       * @returns {string}
       */
     loadLocale(locale = 'en') {
         return new Promise((resolve, reject) => {
             Axios
-                .get(`${window.contextPath}/public/extensions/widgets/<%= widgetId %>/locales/${locale}.json`)
+                .get(`${window.contextPath}/public/extensions/widgets/APIMApiTraffic/locales/${locale}.json`)
                 .then((response) => {
                     // eslint-disable-next-line global-require, import/no-dynamic-require
                     addLocaleData(require(`react-intl/locale-data/${locale}`));
@@ -142,16 +144,28 @@ class <%= className %> extends Widget {
     }
 
     /**
+     * Retrieve params from publisher
+     * @memberof APIMApiTrafficwidget
+     * */
+    handlePublisherParameters(receivedMsg) {
+        this.setState({
+            publisherData: receivedMsg
+            // Insert the code to handle publisher data
+        }, this.assembleQuery)
+    }
+
+    /**
      * Formats the query using selected options
-     * @memberof <%= className %>
+     * @memberof APIMApiTrafficwidget
      * */
     assembleQuery() {
+        const { publisherData } = this.state;
         const { id, widgetID: widgetName } = this.props;
 
         const dataProviderConfigs = cloneDeep(providerConfig);
         dataProviderConfigs.configs.config.queryData.queryName = 'sampleQuery';
         dataProviderConfigs.configs.config.queryData.queryValues = {
-            '{{sampleValues}}': "userName",
+            '{{sampleValues}}': publisherData,
         };
         super.getWidgetChannelManager()
             .subscribeWidget(id, widgetName, this.handleQueryResults, dataProviderConfigs);
@@ -160,7 +174,7 @@ class <%= className %> extends Widget {
     /**
      * Formats data retrieved
      * @param {object} message - data retrieved
-     * @memberof <%= className %>
+     * @memberof APIMApiTrafficwidget
      * */
     handleQueryResults(message){
         const { data } = message;
@@ -169,8 +183,8 @@ class <%= className %> extends Widget {
 
     /**
      * @inheritDoc
-     * @returns {ReactElement} Render the <%= className %>
-     * @memberof <%= className %>
+     * @returns {ReactElement} Render the APIMApiTrafficwidget
+     * @memberof APIMApiTrafficwidget
      */
     render() {
         const { localeMessages } = this.state;
@@ -186,7 +200,7 @@ class <%= className %> extends Widget {
                     theme={themeName === 'dark' ? darkTheme : lightTheme}>
                         <FormattedMessage
                             id='widget.heading'
-                            defaultMessage='SAMPLE HEADING'
+                            defaultMessage='TOTAL TRAFFIC'
                         />
                         // Insert code for rendering the UI
                 </MuiThemeProvider>
@@ -195,4 +209,4 @@ class <%= className %> extends Widget {
     }
 }
 
-global.dashboard.registerWidget('<%= widgetId %>', <%= className %>);
+global.dashboard.registerWidget('APIMApiTraffic', APIMApiTrafficwidget);
