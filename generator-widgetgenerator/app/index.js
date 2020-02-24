@@ -25,7 +25,7 @@ module.exports = class extends Generator {
       {
         type: "input",
         name: "widgetHeading",
-        message: "Enter Widget Heading",
+        message: "Enter Widget Title",
         default: "Recent Api Traffic"
       },
       {
