@@ -1,0 +1,13 @@
+{
+  "id": "<%= className %>",
+  "name": "<%= widgetId %>",
+  "thumbnailURL": "",
+  "configs": {
+    "pubsub": {
+      "types": ["<%= dataProvider %>"],
+      "publisherWidgetOutputs": ["output1", "output2"]
+    },
+    "options": [
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "generator-widgetgenerator",
+  "version": "1.0.0",
+  "description": "Widget generator for WSO2 analytics-dashboard",
+  "files": [
+    "generators",
+    "app",
+    "router"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.1.1"
+  },
+  "scripts": {
+    "createWidget": "yo widgetgenerator"
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "<%= className %>",
+    "id": "<%= widgetId %>",
+    "thumbnailURL": "",
+    "configs": {
+        "providerConfig" : {
+            "configs": {
+                "type": ["<%= dataProvider %>"],
+                "config": {
+                    "queryData": {
+                        "sampleQuery": "select * from sampleTable where name == {{sampleValues}};"
+                    }
+                }
+            }
+        },
+      "options": [
+      ]
+    }
+}
