@@ -57,11 +57,11 @@ const language = (navigator.languages && navigator.languages[0]) || navigator.la
 const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 
-class <%= className %> extends Widget {
+class APIMPublisherwidget extends Widget {
   /**
-   * Creates an instance of <%= className %>.
+   * Creates an instance of APIMPublisherwidget.
    * @param {any} props @inheritDoc
-   * @memberof <%= className %>
+   * @memberof APIMPublisherwidget
    */
   constructor(props) {
    super(props);
@@ -106,13 +106,13 @@ componentDidMount() {
 /**
   * Load locale file
   * @param {string} locale Locale name
-  * @memberof <%= className %>
+  * @memberof APIMPublisherwidget
   * @returns {string}
   */
   loadLocale(locale = 'en') {
     return new Promise((resolve, reject) => {
       Axios
-          .get(`${window.contextPath}/public/extensions/widgets/<%= widgetId %>/locales/${locale}.json`)
+          .get(`${window.contextPath}/public/extensions/widgets/APIMPublisher/locales/${locale}.json`)
           .then((response) => {
               // eslint-disable-next-line global-require, import/no-dynamic-require
               addLocaleData(require(`react-intl/locale-data/${locale}`));
@@ -151,8 +151,8 @@ renderPublishData() {
 };
 
   /**
-   * @returns {ReactElement} Render the <%= className %>
-   * @memberof <%= className %>
+   * @returns {ReactElement} Render the APIMPublisherwidget
+   * @memberof APIMPublisherwidget
    */
  render() {
   const { localeMessages } = this.state;

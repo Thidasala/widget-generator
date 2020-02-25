@@ -1,10 +1,10 @@
 {
-  "id": "<%= className %>",
-  "name": "<%= widgetId %>",
+  "id": "APIMPublisherwidget",
+  "name": "APIMPublisher",
   "thumbnailURL": "",
   "configs": {
     "pubsub": {
-      "types": ["<%= dataProvider %>"],
+      "types": ["SiddhiStoreDataProvider"],
       "publisherWidgetOutputs": ["output1", "output2"]
     },
     "options": [
