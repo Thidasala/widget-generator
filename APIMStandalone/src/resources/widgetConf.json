@@ -1,11 +1,11 @@
 {
-    "name": "<%= className %>",
-    "id": "<%= widgetId %>",
+    "name": "APIMStandalonewidget",
+    "id": "APIMStandalone",
     "thumbnailURL": "",
     "configs": {
         "providerConfig" : {
             "configs": {
-                "type": ["<%= dataProvider %>"],
+                "type": ["SiddhiStoreDataProvider"],
                 "config": {
                     "queryData": {
                         "sampleQuery": "select * from sampleTable where name == {{sampleValues}};"

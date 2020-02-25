@@ -56,15 +56,15 @@ const language = (navigator.languages && navigator.languages[0]) || navigator.la
 const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
 
 /**
- * Create React Component for <%= widgetId %>
- * @class <%= className %>
+ * Create React Component for APIMStandalone
+ * @class APIMStandalonewidget
  * @extends {Widget}
  */
-class <%= className %> extends Widget {
+class APIMStandalonewidget extends Widget {
     /**
-     * Creates an instance of <%= className %>.
+     * Creates an instance of APIMStandalonewidget.
      * @param {any} props @inheritDoc
-     * @memberof <%= className %>
+     * @memberof APIMStandalonewidget
      */
     constructor(props) {
         super(props);
@@ -124,13 +124,13 @@ class <%= className %> extends Widget {
     /**
       * Load locale file
       * @param {string} locale Locale name
-      * @memberof <%= className %>
+      * @memberof APIMStandalonewidget
       * @returns {string}
       */
     loadLocale(locale = 'en') {
         return new Promise((resolve, reject) => {
             Axios
-                .get(`${window.contextPath}/public/extensions/widgets/<%= widgetId %>/locales/${locale}.json`)
+                .get(`${window.contextPath}/public/extensions/widgets/APIMStandalone/locales/${locale}.json`)
                 .then((response) => {
                     // eslint-disable-next-line global-require, import/no-dynamic-require
                     addLocaleData(require(`react-intl/locale-data/${locale}`));
@@ -143,7 +143,7 @@ class <%= className %> extends Widget {
 
     /**
      * Formats the query using selected options
-     * @memberof <%= className %>
+     * @memberof APIMStandalonewidget
      * */
     assembleQuery() {
         const { id, widgetID: widgetName } = this.props;
@@ -160,7 +160,7 @@ class <%= className %> extends Widget {
     /**
      * Formats data retrieved
      * @param {object} message - data retrieved
-     * @memberof <%= className %>
+     * @memberof APIMStandalonewidget
      * */
     handleQueryResults(message){
         const { data } = message;
@@ -169,8 +169,8 @@ class <%= className %> extends Widget {
 
     /**
      * @inheritDoc
-     * @returns {ReactElement} Render the <%= className %>
-     * @memberof <%= className %>
+     * @returns {ReactElement} Render the APIMStandalonewidget
+     * @memberof APIMStandalonewidget
      */
     render() {
         const { localeMessages } = this.state;
@@ -195,4 +195,4 @@ class <%= className %> extends Widget {
     }
 }
 
-global.dashboard.registerWidget('<%= widgetId %>', <%= className %>);
+global.dashboard.registerWidget('APIMStandalone', APIMStandalonewidget);
